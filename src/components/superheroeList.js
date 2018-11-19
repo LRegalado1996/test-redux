@@ -15,7 +15,6 @@ class SuperheroesList extends Component {
   } //getSuperheroes
 
   render() {
-    console.log(this.props)
     return (
       <ul>
       {this.getSuperheroes()}

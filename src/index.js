@@ -5,14 +5,14 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Reducers from './reducers';
 
-import SuperheroesList from './components/superheroeList';
+import TabBarList from './components/TabBarList';
 
 class App extends Component {
 
   render() {
     return (
       <Provider store={createStore(Reducers)}>
-        <SuperheroesList />
+        <TabBarList />
       </Provider>
     );
   }
@@ -26,6 +26,8 @@ class Game extends Component {
     return (
       <div className="game">
         <App />
+
+
       </div>
     );
   }
