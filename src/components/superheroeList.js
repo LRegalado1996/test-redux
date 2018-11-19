@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
+import {fetchData} from '../actions'
 
 class SuperheroesList extends Component {
 
-  getSuperheroes() {
-    const { superheroes } = this.props;
+  componentWillMount() {
+    this.props.fetchData();
+  } // end componentWillMount
 
-    const superheroesData = superheroes.map((heroes, key) => {
-      return <li key={key}>{heroes.superhero}</li>
+  getTvShows() {
+    const { dataTvMaze } = this.props;
+
+    const dataTvShow = dataTvMaze.data.map((tv, key) => {
+      return <li key={tv.id}>{tv.name}</li>
     })
 
-    return superheroesData
+    return dataTvShow
   } //getSuperheroes
 
   render() {
     return (
       <ul>
-      {this.getSuperheroes()}
+        {this.props.dataTvMaze.isFetching && <p>loading...</p>}
+        {
+          this.props.dataTvMaze.data.length ?
+            this.getTvShows()
+          : null
+        }
       </ul>
     ) //end return
   } //end render
@@ -25,7 +35,14 @@ class SuperheroesList extends Component {
 
 const mapStateToProps = state => {
 
-  return { superheroes: state.superheroes }
+  return { dataTvMaze: state.dataReducer }
 };
 
-export default connect(mapStateToProps)(SuperheroesList);
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+    fetchData: () => dispatch(fetchData())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SuperheroesList);

@@ -12,7 +12,6 @@ class TabBarList extends Component {
   }; // end tabAction
 
   render() {
-    console.log(this.props);
     return (
       <nav className='list'>
         <ul>

@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import Reducers from './reducers';
+// import { createStore } from 'redux';
+// import Reducers from './reducers';
 
 import TabBarList from './components/TabBarList';
+import configureStore from './configureStore';
+
+let store = configureStore()
 
 class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(Reducers)}>
+      <Provider store={store}>
         <TabBarList />
       </Provider>
     );
